@@ -119,7 +119,7 @@ export async function updateSession(request: NextRequest) {
    * 
    * pathname.startsWith() = cek apakah URL dimulai dengan string tertentu
    */
-  if (!user && request.nextUrl.pathname.startsWith('/todos')) {
+  if (!user && (request.nextUrl.pathname.startsWith('/todos') || request.nextUrl.pathname === '/')) {
     // User belum login, redirect ke /login
     const redirectUrl = new URL('/login', request.url)
     return NextResponse.redirect(redirectUrl)
